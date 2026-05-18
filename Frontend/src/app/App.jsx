@@ -1,7 +1,20 @@
 import './App.css'
 import { Editor } from '@monaco-editor/react'
+import { MonacoBinding } from "y-monaco"
+import { useRef, useMemo } from 'react'
+import * as Y from 'yjs'
+impory { SocketIOProvider } from 'y-socket.io'
 
 function App() {
+
+  const editorRef = useRef(null)
+
+  const ydoc = useMemo(() => new Y.Doc(), [])
+  const yTest = useMemo(() => ydoc.getText("monaco"), [ydoc])
+
+  const handleMount = (editor) => {
+    editorRef.current = editor
+  }
 
   return (
     <>
